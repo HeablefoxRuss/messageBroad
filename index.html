@@ -68,11 +68,11 @@
 </head>
 
 <body>
-  <div id="outpoot" style="height: 400px; overflow: scroll;">
+  <div class="div1" id="outpoot" style="height: 400px; overflow: scroll;">
   </div>
   <textarea id="inpoot" rows=2 cols=32 autocomplete="off"></textarea>
   <button id="sendButton" onclick="sendit()">Send</button>
-  <div id="userBox">
+  <div class="div2" id="userBox">
   </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -112,7 +112,7 @@
     if (data.type == "message") {
       // put the messae on the screen
       document.getElementById('outpoot').innerHTML +=
-        `<img height=25 width=25 src='${data.avatar}'><span style="color: ${data.color}" title="${data.date}">` +
+        `<img height=25 width=25 src='${data.avatar}'><div class="message"><span style="color: ${data.color}" class="username" title="${data.date}">` +
         `${data.name}</span>: ${data.message}<br>`;
     }
     // you add all this in class so I do not know
