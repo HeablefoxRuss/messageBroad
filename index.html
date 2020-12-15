@@ -34,7 +34,7 @@
     console.log('Connected to server!');
     // tell how is connected
     let connectMSG = {
-      name: "Russell",
+      name: "USERNAME",
       type: "connect",
       date: new Date()
     }
@@ -51,7 +51,7 @@
     if (data.type == "message") {
       // put the messae on the screen
       document.getElementById('outpoot').innerHTML +=
-        `<span style="color: ${data.color}" title="${data.date}">` +
+        `<img height=25 width=25 src='${data.avatar}'><span style="color: ${data.color}" title="${data.date}">` +
         `${data.name}</span>: ${data.message}<br>`;
     }
     // you add all this in class so I do not know
@@ -76,8 +76,9 @@
   function sendit() {
     // properdes of a message that I sent to someone
     let msgObj = {
-      name: "Russell",
-      color: "#50006A",
+      name: "USERNAME",
+      color: "COLOR",
+      avatar: "AVATAR",
       type: "message",
       message: document.getElementById('inpoot').value,
       date: new Date().toString()
