@@ -54,7 +54,7 @@
       transform: translateY(4px);
     }
     .username{
-      font-family: Papyrus, Fantasy;
+      font-family: Helvetica, sans-serif;
     }
     .message{
       background-color: black;
@@ -85,7 +85,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="text/javascript">
   // tells were to connent to the server
-  const ws = new WebSocket('ws://localhost:8080/');
+  const ws = new WebSocket('ws://192.168.24.101:8080/');
 
   // get your message from what you typed
   document.getElementById('inpoot').addEventListener("keyup", function(event) {
@@ -102,7 +102,7 @@
     console.log('Connected to server!');
     // tell how is connected
     let connectMSG = {
-      name: "USERNAME",
+      name: "Sammy",
       type: "connect",
       date: new Date()
     }
@@ -144,8 +144,8 @@
   function sendit() {
     // properdes of a message that I sent to someone
     let msgObj = {
-      name: "USERNAME",
-      color: "#COLOR",
+      name: "Sammy",
+      color: "#008db5",
       avatar: "AVATAR.JPG",
       type: "message",
       message: document.getElementById('inpoot').value,
