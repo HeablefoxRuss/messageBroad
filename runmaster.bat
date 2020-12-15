@@ -1,0 +1,2 @@
+node master.js
+pause

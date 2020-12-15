@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>websocket</title>
+</head>
+
+<body>
+  <div id="outpoot" style="height: 400px; overflow: scroll;">
+  </div>
+  <textarea id="inpoot" rows=2 cols=32 autocomplete="off"></textarea>
+  <button id="sendButton" onclick="sendit()">Send</button>
+  <div id="userBox">
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="text/javascript">
+  // tells were to connent to the server
+  const ws = new WebSocket('ws://localhost:8080/');
+
+  // get your message from what you typed
+  document.getElementById('inpoot').addEventListener("keyup", function(event) {
+    // if you hit enter this stuff
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      // hit the send button
+      document.getElementById('sendButton').click();
+    }
+  });
+
+  // when you open html file do this
+  ws.onopen = function() {
+    console.log('Connected to server!');
+    // tell how is connected
+    let connectMSG = {
+      name: "Russell",
+      type: "connect",
+      date: new Date()
+    }
+    // turn everything you type in the box to string
+    ws.send(JSON.stringify(connectMSG));
+  }
+
+// when you send a message
+  ws.onmessage = function(message) {
+    //when send convert to string
+    let data = JSON.parse(message.data);
+
+// if there is a message do this stuff
+    if (data.type == "message") {
+      // put the messae on the screen
+      document.getElementById('outpoot').innerHTML +=
+        `<span style="color: ${data.color}" title="${data.date}">` +
+        `${data.name}</span>: ${data.message}<br>`;
+    }
+    // you add all this in class so I do not know
+    else if (data.type == "userlist") {
+      // you add all this in class so I do not know
+      let userBox = document.getElementById('userBox')
+      // you add all this in class so I do not know
+      userBox.innerHTML = '';
+      // you add all this in class so I do not know
+      data.names.forEach(function(name) {
+        // you add all this in class so I do not know
+        userBox.innerHTML += name + "<br>";
+      });
+    } else if (data.type == "connect") {
+      // you add all this in class so I do not know
+      document.getElementById('outpoot').innerHTML +=
+        `<i>${data.name} has joined the server.</i><br>`
+    }
+  }
+
+  // new functoin called send it
+  function sendit() {
+    // properdes of a message that I sent to someone
+    let msgObj = {
+      name: "Russell",
+      color: "#50006A",
+      type: "message",
+      message: document.getElementById('inpoot').value,
+      date: new Date().toString()
+    };
+    // turn it to string when sent
+    ws.send(JSON.stringify(msgObj));
+    // when you send a message empty the message box
+    document.getElementById('inpoot').value = "";
+  }
+</script>
+
+</html>
