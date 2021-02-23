@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="utf-8">
+
   <title>Message Board</title>
   <link rel="icon" href='favicon.png'>
   <link rel='stylesheet' href='style.css'>
+
 </head>
 
 <body onclick='update(); closeMenus()'>
@@ -26,6 +28,7 @@
   <div id="userBox">
     <b id='ubTitle'>Online</b>
   </div>
+
   <img id='userButton' class='closeButton hidden' src='close.png' onclick='toggleUb()' onmouseover='highlight("userButton", "close")' onmouseout='removeHighlight("userButton", "close", false)'>
   <div id='inpootBarBg'>
     <textarea id="inpoot" autocomplete="off" placeholder='Send a message'></textarea>
@@ -123,6 +126,7 @@
         <h1>Choose a color</h1><br>
         <div class='loginColorButton'>
 
+
         </div><br>
         <br>
         <br>
@@ -145,6 +149,7 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script type="text/javascript" src='client.js'></script>
 <script type="text/javascript" src='buttons.js'></script>
+
 
 <!--Bots-->
 <script type="text/javascript" src='russiabot.js'></script>
