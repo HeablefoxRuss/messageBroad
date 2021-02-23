@@ -6,7 +6,7 @@
   </head>
   <body></body>
   <script type='text/javascript'>
-    const ws = new WebSocket('ws://192.168.24.213:8080/');
+    const ws = new WebSocket('ws://192.168.24.101:8080/');
 
     ws.onopen = function() {
       console.log('Connected to server!');
@@ -38,8 +38,6 @@
       message = message.replace(/C/g, 'С');
       message = message.replace(/e/g, 'э');
       message = message.replace(/E/g, 'Э');
-      message = message.replace(/f/g, 'ғ');
-      message = message.replace(/F/g, 'Ғ');
       message = message.replace(/f/g, 'ғ');
       message = message.replace(/F/g, 'Ғ');
       message = message.replace(/h/g, 'һ');
@@ -78,11 +76,12 @@
       message = message.replace(/Y/g, 'Ч');
       let msgObj = {
         name: 'Яцѕѕіа Ьот ☭ (@RussiaBot)',
-        color: '#f00',
+        color: 'red',
         avatar: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hammer_and_sickle.svg/1024px-Hammer_and_sickle.svg.png',
         date: new Date(),
         type: 'message',
-        message: message
+        message: message,
+        channel: '',
       }
       ws.send(JSON.stringify(msgObj));
     }
