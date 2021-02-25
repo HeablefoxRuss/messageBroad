@@ -6,8 +6,8 @@
   </head>
   <body></body>
   <script type='text/javascript'>
-    const ws = new WebSocket('ws://192.168.24.213:8080/');
-
+    const ws = new WebSocket('ws://localhost:8080/');
+    
     ws.onopen = function() {
       console.log('Connected to server!');
       let connectMsg = {

@@ -1,0 +1,359 @@
+:root {
+  --text-color: white;
+  --background-color: #333;
+  --bg-highlight-color: #444;
+  --main-color: #bfbfff;
+  --alt-color: #8f8fbf;
+  --emphasis-color: white;
+  --inpoot-height: 0;
+  --menu-color-hover: white;
+}
+.hidden {
+  display: none;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Segoe UI", sans-serif;
+}
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 5px 5px var(--main-color);
+  border: solid 5px transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 5px 5px var(--emphasis-color);
+}
+::-webkit-scrollbar-thumb:active {
+  box-shadow: inset 0 0 15px 15px var(--emphasis-color);
+  border: none;
+}
+::-webkit-scrollbar-corner {
+  box-shadow: inset 0 0 5px 5px white;
+  border: solid 5px transparent;
+}
+.outpoot {
+  width: calc(100% - 320px);
+  height: calc(100% - var(--inpoot-height));
+  overflow: auto;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  word-wrap: break-word;
+  vertical-align: bottom;
+  z-index: -1;
+  padding-top: 0px;
+}
+.notConnected {
+  color: red;
+  margin: 10px 10px 20px;
+}
+.message {
+  padding: 10px 10px;
+  margin: 10px 0;
+}
+.msgHeading {
+  white-space: nowrap;
+}
+.avatar {
+  width: 35px;
+  height: 35px;
+  margin: 0 10px 0 0;
+  vertical-align: top;
+}
+.avatar-compact {
+  display: none;
+}
+.msgText {
+  display: inline-block;
+}
+.date {
+  color: var(--alt-color);
+  margin-right: 5px;
+}
+.msgButton {
+  width: 14px;
+  margin: 0;
+  opacity: 50%;
+}
+.msgButton:hover {
+  opacity: 100%;
+}
+.deleted {
+  color: red;
+}
+.connectMsg {
+  color: var(--alt-color);
+}
+a {
+  color: var(--main-color);
+}
+#channelBoxes {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 50px;
+  z-index: -1;
+  text-align: center;
+  line-height: 50px;
+  cursor: default;
+}
+.channelBox {
+  background-color: var(--background-color);
+  border-bottom: solid 2px var(--main-color);
+  border-right: solid 2px var(--main-color);
+  padding: 0px 15px;
+}
+.channelBox:hover {
+  background-color: var(--bg-highlight-color);
+}
+.cbVisible {
+  display: inline-block;
+}
+.cbHighlighted {
+  background-color: var(--main-color);
+  color: var(--background-color);
+}
+.cbHighlighted:hover {
+  background-color: var(--main-color);
+  color: var(--background-color);
+}
+.channelInput {
+  outline-style: none;
+  border-style: none;
+  background-color: transparent;
+  color: var(--text-color);
+  font-size: 16px;
+  padding: 0;
+}
+#channelBoxNew {
+  border-bottom-right-radius: 50%;
+  height: 50px;
+}
+#userBox {
+  width: 300px;
+  height: calc(100% - var(--inpoot-height) - 20px);
+  background-color: #222;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  z-index: -1;
+}
+#ubTitle {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+.closeButton {
+  width: 35px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: default;
+  margin: 0;
+}
+#inpootBarBg {
+  background-color: #333;
+  border-top: 2px solid #8f8fbf;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  z-index: -1;
+}
+textarea {
+  height: 42px;
+  width: 75%;
+  background-color: #222;
+  color: white;
+  outline-style: none;
+  border-style: none;
+  vertical-align: middle;
+  bottom: 0;
+  left: 10;
+  resize: none;
+  border: 2px solid #8f8fbf;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+  margin: 10px 10px 10px 5px;
+}
+textarea::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 5px 5px #bfbfff;
+  border: solid 5px transparent;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 0 0 5px 5px white;
+}
+textarea::-webkit-scrollbar-thumb:active {
+  box-shadow: inset 0 0 15px 15px white;
+  border: none;
+}
+.inpoot-compact {
+  height: 18px;
+  width: calc(100% - 92px);
+  margin: 0 5px 0 0;
+}
+button {
+  background-color: #333;
+  color: #bfbfff;
+  font-size: 30px;
+  border-radius: 12.5px;
+  transition-duration: 0.2s;
+  border: 2px solid #bfbfff;
+  outline-style: none;
+  height: 50px;
+  width: 100px;
+  vertical-align: top;
+  margin-top: 10px;
+}
+button:hover {
+  background-color: #bfbfff;
+  color: #333;
+}
+#sendButton:active {
+  transform: translateY(4px);
+}
+.send-compact {
+  width: 55px;
+  height: 26px;
+  border-radius: 6.5px;
+  font-size: 15px;
+  margin: 0;
+}
+.imgButton {
+  width: 35px;
+  margin: 3.5px;
+}
+.botButton {
+  opacity: 50%
+}
+.botButton:hover {
+  opacity: 100%
+}
+.popup {
+  position: relative;
+  display: inline-block;
+}
+.popup .show {
+  visibility: visible;
+}
+.popupMenu {
+  visibility: hidden;
+  text-align: center;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  background-color: white;
+  color: black;
+  border: 2px solid var(--alt-color);
+  cursor: default;
+}
+.menuItem {
+  width: 128px;
+  height: 24px;
+  font-size: 21px;
+  display: inline-block;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+.menuItem:hover {
+  background-color: #bfbfff
+}
+.menuBox, .menuColor {
+  width: 24px;
+  height: 32px;
+  color: #111;
+  font-size: 28px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin-bottom: -4px;
+}
+.menuBox:hover {
+  background-color: #bfbfff
+}
+.menuColor:hover {
+  box-shadow: inset 0 0 0 2px var(--menu-color-hover);
+}
+.popupBox {
+  position: fixed;
+  box-sizing: border-box;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  background-color: var(--bg-highlight-color);
+  border: 2px solid var(--main-color);
+  z-index: 3;
+  padding: 25px;
+  overflow: auto;
+}
+h1 {
+  margin: 0;
+  color: var(--main-color);
+  font-size: 24px;
+}
+h2 {
+  margin: 0;
+  color: var(--main-color);
+  font-size: 20px;
+}
+.loginInput {
+  width: 50%;
+  outline-style: none;
+  border: 1px solid var(--alt-color);
+  background-color: #222;
+  color: var(--text-color);
+  font-size: 16px;
+}
+.loginColorButton {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+.loginColorButton:hover {
+  background-color: var(--background-color);
+}
+#progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 52px;
+  border-top: 1px solid var(--alt-color);
+  text-align: center;
+}
+.progressButton {
+  position: absolute;
+  right: 10px;
+  height: 32px;
+  width: 64px;
+  font-size: 16px;
+  border-radius: 8px;
+  margin: 10px;
+  background-color: var(--bg-highlight-color);
+}
+#backButton {
+  left: 0;
+}
+#nextButton {
+  right: 0;
+}
+#bgBlur {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+  z-index: 2;
+}
+.box {
+  position: fixed;
+  background-color: black;
+  cursor: none;
+}
