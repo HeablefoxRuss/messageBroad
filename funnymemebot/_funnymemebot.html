@@ -9,9 +9,9 @@
     <button id="sendButton" onclick="sendit(memes[Math.floor(Math.random()*memes.length)])">Send</button>
   </body>
   <script type='text/javascript'>
-    var memes = 
-
-    const ws = new WebSocket('ws://192.168.24.101:8080/');
+    const ws = new WebSocket('ws://localhost:8080/');
+    
+    var memes =
 
     ws.onopen = function() {
       console.log('Connected to server!');

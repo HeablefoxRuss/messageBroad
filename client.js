@@ -25,15 +25,15 @@ ws.onopen = function() {
 }
 
 function update() {
-//Use normal favicon
-document.querySelector('link[rel*="icon"]').href = 'favicon.png';
-//Use compact interface for small windows
-if ((!compactOn && (window.innerWidth < 700 || window.innerHeight < 500)) || (compactOn && window.innerWidth >= 700 && window.innerHeight >= 500)) {compact();}
-if (compactOn) {document.getElementById('inpoot').style.height = '18px';}
-else {document.getElementById('inpoot').style.height = '42px';}
-if (document.getElementById('inpoot').clientHeight < document.getElementById('inpoot').scrollHeight) {document.getElementById('inpoot').style.height = '142px';}
-  //Get height of input bar
-  document.documentElement.style.setProperty('--inpoot-height', document.getElementById('inpootBarBg').offsetHeight + 'px');
+  //Use normal favicon
+  document.querySelector('link[rel*="icon"]').href = 'favicon.png';
+  //Use compact interface for small windows
+  if ((!compactOn && (window.innerWidth < 700 || window.innerHeight < 500)) || (compactOn && window.innerWidth >= 700 && window.innerHeight >= 500)) {compact();}
+  if (compactOn) {document.getElementById('inpoot').style.height = '18px';}
+  else {document.getElementById('inpoot').style.height = '42px';}
+  if (document.getElementById('inpoot').clientHeight < document.getElementById('inpoot').scrollHeight) {document.getElementById('inpoot').style.height = '142px';}
+    //Get height of input bar
+    document.documentElement.style.setProperty('--inpoot-height', document.getElementById('inpootBarBg').offsetHeight + 'px');
 }
 
 document.addEventListener('visibilitychange', update);
@@ -93,7 +93,7 @@ function sendit() {
 // when you send a message
 ws.onmessage = function(message) {
   //Change favicon if page is not open
-  if (document.hidden) {document.querySelector('link[rel*="icon"]').href = 'favicon2.png'}
+  if (document.hidden) {document.querySelector('link[rel*="icon"]').href = 'favicon2.png';}
 
   //when send convert to string
   let data = JSON.parse(message.data);
@@ -101,13 +101,13 @@ ws.onmessage = function(message) {
   // if there is a message do this stuff
   if (data.type == "message") {
     let atBottom;
-    if (document.getElementById('outpoot${data.channel}').scrollTop === document.getElementById('outpoot${data.channel}').scrollHeight - document.getElementById('outpoot${data.channel}').clientHeight) {atBottom = true;}
+    if (document.getElementById('outpoot').scrollTop === document.getElementById('outpoot').scrollHeight - document.getElementById('outpoot').clientHeight) {atBottom = true;}
     else {atBottom = false;}
       // put the messae on the screen
       document.getElementById('outpoot').innerHTML += `<div id='${data.id}' class='message'><span class='msgHeading'><img class='avatar' src='${data.avatar}'><div class='msgText'><b style="color: ${data.color};">${data.name}</b><span id='${data.message}-date' class='date'> ${data.date}</span></span><img id='${data.id}-edit' src='edit1.png' class='msgButton hidden' onclick='editMsg("${data.id}", document.getElementById("${data.id}-mainText").innerHTML' title='Edit message'><img id='${data.id}-del' src='delete.png' class='msgButton delButton hidden' onclick='deleteMsg("${data.id}")' title='Delete message'></span><br><span id='${data.message}-mainText'>${data.message}</span></div></div><br>`;
       if (`${data.name}` == name) {document.getElementById('`${data.id}`').style.backgroundColor = 'var(--bg-highlight-color)';}
     //Scroll to message if page is scrolled to bottom
-    if (atBottom) {document.getElementById('`${data.id}`').scrollIntoView();}
+    if (atBottom) {document.getElementById(`${data.id}`).scrollIntoView();}
   }
 
   else if (data.type == "userlist") {
@@ -123,7 +123,7 @@ ws.onmessage = function(message) {
     } else {
       document.getElementById('outpoot').innerHTML += `<i class='message msgText'><span style="color: ${data.color}"><b>${data.name}</b></span><span class='connectMsg'> has joined the server.</span></i><br>`;
     }
-    document.getElementById('userBox').innerHTML += `<br><span style="color: ${data.color} display: inline-block; margin: 5px 0px;">${data.name}</span>`
+    document.getElementById('userBox').innerHTML += `<br><span style="color: ${data.color}" display: "inline-block" margin: "5px 0px">${data.name}</span>`
   }
 
   else if (data.type == 'edit') {
@@ -133,7 +133,7 @@ ws.onmessage = function(message) {
 
   else if (data.type == 'delete') {document.getElementById(`${data.id}-mainText`).innerHTML = '<i class="deleted">Message deleted</i>'}
 
-  if (`${data.name}` == name) {document.getElementById(`${data.id}`).style.backgroundColor = 'var(--bg-highlight-color)';}
+  //if (`${data.name}` == userName) {document.getElementById(`${data.id}`).style.backgroundColor = 'var(--bg-highlight-color)';}
 }
 
 function showMsgButtons(name, id) {

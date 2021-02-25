@@ -1,5 +1,3 @@
-const ws = new WebSocket('ws://192.168.24.101:8080/');
-
 ws.onopen = function() {
   console.log('Connected to server!');
   let connectMsg = {

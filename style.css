@@ -14,7 +14,7 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 ::-webkit-scrollbar {
   width: 15px;
@@ -37,7 +37,7 @@ body {
 }
 .outpoot {
   width: calc(100% - 320px);
-  height: calc(100% - var(--inpoot-height) - 0px);
+  height: calc(100% - var(--inpoot-height));
   overflow: auto;
   position: fixed;
   top: 0px;
@@ -45,6 +45,7 @@ body {
   word-wrap: break-word;
   vertical-align: bottom;
   z-index: -1;
+  padding-top: 0px;
 }
 .notConnected {
   color: red;
@@ -86,7 +87,6 @@ body {
 }
 .connectMsg {
   color: var(--alt-color);
-  margin: 10px 10px 20px;
 }
 a {
   color: var(--main-color);
@@ -178,7 +178,7 @@ textarea {
   left: 10;
   resize: none;
   border: 2px solid #8f8fbf;
-  font-family: sans-serif;
+  font-family: "Segoe UI", sans-serif;
   font-size: 16px;
   margin: 10px 10px 10px 5px;
 }
