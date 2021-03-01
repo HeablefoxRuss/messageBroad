@@ -192,6 +192,9 @@ document.addEventListener("keydown", function(event) {
   //Esc key pressed
   if (event.keyCode == 27) {
     closePopups();
+    closeFMenu();
+    closeCMenu();
+    closeDMenu();
   }
 });
 

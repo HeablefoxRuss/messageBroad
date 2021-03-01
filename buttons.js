@@ -394,13 +394,35 @@ function removeHighlight(button, original, condition) {
   if (!condition) document.getElementById(button).src = "images/" + original + ".png";
 }
 
-document.addEventListener("mouseup", function(event) {
-  //Anywhere except menuColor and colorButton
-  if (event.target != document.getElementById("cMenu") && event.target != document.getElementById("colorButton")) {
-    console.log(colorOn);
-    document.getElementById("cMenu").classList.add("hidden");
-    removeHighlight("colorButton", "color", colorOn);
+function closeFMenu() {
+  document.getElementById("fMenu").classList.add("hidden");
+  if (fontOn != "selected") {
+    fontOn = false;
+  }
+  removeHighlight("fontButton", "font", fontOn);
+}
+function closeCMenu() {
+  document.getElementById("cMenu").classList.add("hidden");
+  if (colorOn != "selected") {
     colorOn = false;
+  }
+  removeHighlight("colorButton", "color", colorOn);
+}
+function closeDMenu() {
+  document.getElementById("dMenu").classList.add("hidden");
+  diacriticOn = false;
+  removeHighlight("diacriticButton", "diacritic", diacriticOn);
+}
+
+document.addEventListener("mouseup", function(event) {
+  if (!event.target.classList.contains("menuItem") && event.target != document.getElementById("fMenu") && event.target != document.getElementById("fontButton")) {
+    closeFMenu();
+  }
+  if (!event.target.classList.contains("menuColor") && event.target != document.getElementById("cMenu") && event.target != document.getElementById("colorButton")) {
+    closeCMenu();
+  }
+  if (!event.target.classList.contains("menuBox") && event.target != document.getElementById("dMenu") && event.target != document.getElementById("diacriticButton")) {
+    closeDMenu();
   }
 });
 
