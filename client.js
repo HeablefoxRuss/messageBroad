@@ -1,9 +1,9 @@
 //Enter your name
-let userName = "Oley";
+let userName = 'Anonymous' + Math.floor(Math.random() * 10000);
 //HTML color or hex code
-let userColor = "#aaaaaa";
+let userColor = '#COLOR';
 //Paste image address
-let userAvatar = "https://lh3.googleusercontent.com/2xmt5NaWzoFiWrA5_Lp5648eRyqC0yyolZBCDHTcdgptOlZo9DRUa1_hoTxwcQAQcZCoR3LljFoI0yojO1WBPGInkAhSlik9VdTn6tIBIVyMwQXfF-xPVMzEGSzKWgavuYb3TcRF5lk7I-Ppu0AgVXfulr5R1tl_sC3e5B_1g3yNEsxs48spqz2HCuyQgnHZa5vg_B6B8eUQwIT0PlUTtam3rujc8l9VmX5x5bu85RjgPOYrbg79InXpZJQMd_iwT9c1HvfuiJv7b2xaOWDK63othX1LbA7myBlpZf10Iwn6ngW5JQiZiAVNQEbpri738CvICv7tzXxuDryQLis3JCBLUoRYd2LeeWPNwioYPiCRKgTaFH41xyuAwG9lT7kqlRNzF5PNLk0MhSUDTh1XtI3jPXYTgoxlr8wKonJqVAyt2DuWOpHjO5q0c3ig-Ody3Dx_-zhFovL4cAw4e9Dio4jpEMWxutyirKy6KAbXAKFiiXIWSDhGFvt19a8s6dDHTNvWDZjBYnqnmVI9Vsh2FlfxQ60QOTEWnDfV3QB8Zth-fENqwuxP32A85M4zKHoLvm3cXiR8WzpgMCNH2XQsTQg_LvY6xKGxXve0cQNcslMF8AQiNvmBx0ME8R1AI92JjGF9ws9GNU8Kd35JsPUSEj3BZsScy9ODjdcRr0moD2oowh8wjbNeYjvJbOV9=s256-no";
+let userAvatar = 'images/AVATAR.png';
 
 const ws = new WebSocket("ws://localhost:8080/");
 
