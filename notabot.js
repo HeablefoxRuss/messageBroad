@@ -1,9 +1,8 @@
 ws.onopen = function() {
-  console.log('Connected to server!');
   let connectMsg = {
-    name: 'Me',
-    type: 'connect',
-    date: new Date(),
+    name: "Me",
+    type: "connect",
+    date: new Date().toString().substr(4).slice(0, -36)
   }
   ws.send(JSON.stringify(connectMsg));
 }
@@ -11,21 +10,20 @@ ws.onopen = function() {
 ws.onmessage = function(message) {
   let data = JSON.parse(message.data);
   console.log(`${data.name}`,`${data.color}`);
-  if (data.type == 'message' && Math.floor(Math.random() * 10) == 0) {
-    sendit(`${data.name}`,`${data.color}`,`${data.avatar}`);
-    console.log('10');
+  if (data.type == "message" && Math.floor(Math.random() * 10) == 0) {
+    senditNAB(`${data.name}`,`${data.color}`,`${data.avatar}`);
   }
 }
 
-function sendit(dataName,dataColor,dataAvatar) {
+function senditNAB(dataName, dataColor, dataAvatar) {
   let msgObj = {
     name: dataName,
     color: dataColor,
     avatar: dataAvatar,
-    date: new Date(),
-    type: 'message',
-    message: 'It is I, ' + dataName + '.',
-  }
-  console.log(msgObj);
+    date: new Date().toString().substr(4).slice(0, -36),
+    type: "message",
+    message: "It is I, " + dataName + ".",
+    id: Math.random()
+  };
   ws.send(JSON.stringify(msgObj));
 }

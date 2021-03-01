@@ -1,2 +1,0 @@
-_memelist.py
-pause
