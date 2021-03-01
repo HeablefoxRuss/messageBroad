@@ -5,151 +5,179 @@
   <meta charset="utf-8">
 
   <title>Message Board</title>
-  <link rel="icon" href='favicon.png'>
-  <link rel='stylesheet' href='style.css'>
-
+  <link rel="icon" href="images/favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body onclick='closeMenus()'>
-  <div id='outpoot' class='outpoot'></div>
-  <div id='outpoot1' class='outpoot hidden'></div>
-  <div id='outpoot2' class='outpoot hidden'></div>
-  <div id='outpoot3' class='outpoot hidden'></div>
-  <div id='outpoot4' class='outpoot hidden'></div>
-  <div id='channelBoxes'>
-    <!--img src='menuButton.png' class='menuButton' onclick='toggleMenu'-->
-    <div id='generalBox' class='channelBox cbHighlighted hidden'>General</div
-    ><div id='channelBox1' class='channelBox hidden'></div
-    ><div id='channelBox2' class='channelBox hidden'></div
-    ><div id='channelBox3' class='channelBox hidden'></div
-    ><div id='channelBox4' class='channelBox hidden'></div
-    ><div id='channelBoxNew' class='channelBox hidden' onclick='nameNewChannel()'><b>+</b></div>
+<body>
+  <div id="header">
+    <img src="images/menuButton.png" id="menuButton" onclick="toggleSideMenu()">
   </div>
+  <div id="sideMenu" class="popupBox hidden">
+    <img src="images/close.png" id="menuCloseButton" onclick="toggleSideMenu()">
+    <div style="height: 45px; text-align: center;"><h1 style="line-height: 45px;">Settings</h1></div>
+    <img id="sideMenuAvatar">
+    <h2 id="sideMenuUsername"></h2>
+    <div style="margin: 0 10px;">You can change your username, avatar, and color in the index.html file.</div>
+    <div style="position: absolute; bottom: 10px; margin: 10px;"><input type="checkbox" id="light" onclick="light()" checked><label for="light">Dark mode</label></div>
+  </div>
+  <div id="outpoot" class="outpoot"></div>
+  <!--div id="channelBoxes">
+    <div id="generalBox" class="channelBox cbHighlighted hidden">General</div
+    ><div id="channelBox1" class="channelBox hidden"></div
+    ><div id="channelBox2" class="channelBox hidden"></div
+    ><div id="channelBox3" class="channelBox hidden"></div
+    ><div id="channelBox4" class="channelBox hidden"></div
+    ><div id="channelBoxNew" class="channelBox hidden" onclick="nameNewChannel()"><b>+</b></div>
+  </div-->
   <div id="userBox">
-    <b id='ubTitle'>Online</b>
+    <h2 id="ubTitle">Online</h2>
   </div>
-  <img id='userButton' class='closeButton hidden' src='close.png' onclick='toggleUb()' onmouseover='highlight("userButton", "close")' onmouseout='removeHighlight("userButton", "close", false)'>
-  <div id='inpootBarBg'>
-    <textarea id="inpoot" autocomplete="off" placeholder='Send a message'></textarea>
+  <div id="inpootBarBg">
+    <textarea id="inpoot" autocomplete="off" placeholder="Send a message"></textarea>
     <button id="sendButton" onclick="sendit()">Send</button><br>
-    <div id='inpootButtons'>
-      <img src='bold.png' id='boldButton' class='imgButton' onclick='bold()' onmouseover='highlight("boldButton", "bold")' onmouseout='removeHighlight("boldButton", "bold", boldOn)' title='Bold (Ctrl + B)'>
-      <img src='italics.png' id='italicsButton' class='imgButton' onclick='italics()' onmouseover='highlight("italicsButton", "italics")' onmouseout='removeHighlight("italicsButton", "italics", italicsOn)' title='Italics (Ctrl + I)'>
-      <img src='underline.png' id='underlineButton' class='imgButton' onclick='underline()' onmouseover='highlight("underlineButton", "underline")' onmouseout='removeHighlight("underlineButton", "underline", underlineOn)' title='Underline (Ctrl + Shift + U)'>
-      <img src='strike.png' id='strikeButton' class='imgButton' onclick='strike()' onmouseover='highlight("strikeButton", "strike")' onmouseout='removeHighlight("strikeButton", "strike", strikeOn)' title='Strikethrough (Ctrl + Shift + S)'>
-      <img src='super.png' id='superButton' class='imgButton' onclick='sup()' onmouseover='highlight("superButton", "super")' onmouseout='removeHighlight("superButton", "super", superOn)' title='Superscript (Ctrl + .)'>
-      <img src='sub.png' id='subButton' class='imgButton' onclick='sub()' onmouseover='highlight("subButton", "sub")' onmouseout='removeHighlight("subButton", "sub", subOn)' title='Subscript (Ctrl + ,)'>
-      <div class='popup'>
-        <img src='font.png' id='fontButton' class='imgButton' onclick='font()' onmouseover='highlight("fontButton", "font")' onmouseout='removeHighlight("fontButton", "font", fontOn)' title='Fonts'>
-        <div class='popupMenu' id='fMenu' style='width: 128px; height: 96px; margin-left: -66px;'>
-          <div class='menuItem' style='font-family: serif;' onclick='fontSelect("serif")'>Serif</div>
-          <div class='menuItem' style='font-family: monospace;' onclick='fontSelect("monospace")'>Monospace</div>
-          <div class='menuItem' style='font-family: cursive; font-size: 17px;' onclick='fontSelect("cursive")'>Cursive</div>
-          <div class='menuItem' style='font-family: fantasy;' onclick='fontSelect("fantasy")'>Fantasy</div>
+    <div id="inpootButtons">
+      <img src="images/text2.png" id="textButton" class="imgButtonLarge" onclick="showText()" onmouseover="highlight('textButton', 'text')" onmouseout="removeHighlight('textButton', 'text', textVisible)" title="Text">
+      <img src="images/media.png" id="mediaButton" class="imgButtonLarge" onclick="showMedia()" onmouseover="highlight('mediaButton', 'media')" onmouseout="removeHighlight('mediaButton', 'media', mediaVisible)" title="Media">
+      <img src="images/bots.png" id="botsButton" class="imgButtonLarge" onclick="showBots()" onmouseover="highlight('botsButton', 'bots')" onmouseout="removeHighlight('botsButton', 'bots', botsVisible)" title="Bots">
+      <img src="images/thumbs.png" id="thumbsButton" class="imgButtonLarge" onclick="showThumbs()" onmouseover="highlight('thumbsButton', 'thumbs')" onmouseout="removeHighlight('thumbsButton', 'thumbs', thumbsVisible)" title="Formbar Reactions">
+      <img src="images/mystery.png" id="mysteryButton" class="imgButtonLarge" onclick="showMystery()" onmouseover="highlight('mysteryButton', 'mystery')" onmouseout="removeHighlight('mysteryButton', 'mystery', mysteryVisible)" title="?">
+      <br>
+
+      <div id="textButtons">
+        <img src="images/bold.png" id="boldButton" class="imgButton" onclick="bold()" onmouseover="highlight('boldButton', 'bold')" onmouseout="removeHighlight('boldButton', 'bold', boldOn)" title="Bold (Ctrl + B)">
+        <img src="images/italics.png" id="italicsButton" class="imgButton" onclick="italics()" onmouseover="highlight('italicsButton', 'italics')" onmouseout="removeHighlight('italicsButton', 'italics', italicsOn)" title="Italics (Ctrl + I)">
+        <img src="images/underline.png" id="underlineButton" class="imgButton" onclick="underline()" onmouseover="highlight('underlineButton', 'underline')" onmouseout="removeHighlight('underlineButton', 'underline', underlineOn)" title="Underline (Ctrl + Shift + U)">
+        <img src="images/strike.png" id="strikeButton" class="imgButton" onclick="strike()" onmouseover="highlight('strikeButton', 'strike')" onmouseout="removeHighlight('strikeButton', 'strike', strikeOn)" title="Strikethrough (Ctrl + Shift + S)">
+        <img src="images/super.png" id="superButton" class="imgButton" onclick="sup()" onmouseover="highlight('superButton', 'super')" onmouseout="removeHighlight('superButton', 'super', superOn)" title="Superscript (Ctrl + .)">
+        <img src="images/sub.png" id="subButton" class="imgButton" onclick="sub()" onmouseover="highlight('subButton', 'sub')" onmouseout="removeHighlight('subButton', 'sub', subOn)" title="Subscript (Ctrl + ,)">
+        <div class="popup">
+          <img src="images/font.png" id="fontButton" class="imgButton" onclick="font()" onmouseover="highlight('fontButton', 'font')" onmouseout="removeHighlight('fontButton', 'font', fontOn)" title="Fonts">
+          <div class="popupMenu hidden" id="fMenu" style="width: 128px; height: 96px; margin-left: -66px;">
+            <div class="menuItem" style="font-family: serif;" onclick="fontSelect('serif')">Serif</div>
+            <div class="menuItem" style="font-family: monospace;" onclick="fontSelect('monospace')">Monospace</div>
+            <div class="menuItem" style="font-family: cursive; font-size: 17px;" onclick="fontSelect('cursive')">Cursive</div>
+            <div class="menuItem" style="font-family: fantasy;" onclick="fontSelect('fantasy')">Fantasy</div>
+          </div>
+        </div>
+        <div class="popup">
+          <img src="images/color.png" id="colorButton" class="imgButton" onclick="color()" onmouseover="highlight('colorButton', 'color')" onmouseout="removeHighlight('colorButton', 'color', colorOn)" title="Colors">
+          <div class="popupMenu hidden" id="cMenu" style="width: 120px; height: 80px; margin-left: -63px; padding: 2px;">
+            <div class="menuColor" style="background-color: white;" title="White" onclick="colorSelect('white')" onmouseover="colorHover(true)"></div
+            ><div class="menuColor" style="background-color: #bfbfbf;" title="Light gray" onclick="colorSelect('#bfbfbf')" onmouseover="colorHover(true)"></div
+            ><div class="menuColor" style="background-color: gray;" title="Gray" onclick="colorSelect('gray')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: #404040;" title="Dark gray" onclick="colorSelect('#404040')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: black;" title="Black" onclick="colorSelect('black')" onmouseover="colorHover()"></div>
+            <br>
+            <div class="menuColor" style="background-color: red;" title="Red" onclick="colorSelect('red')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: #ff7f00;" title="Orange" onclick="colorSelect('#ff7f00')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: #964b00;" title="Brown" onclick="colorSelect('#964b00')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: yellow;" title="Yellow" onclick="colorSelect('yellow')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: lime;" title="Lime" onclick="colorSelect('lime')" onmouseover="colorHover()"></div>
+            <br>
+            <div class="menuColor" style="background-color: green;" title="Green" onclick="colorSelect('green')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: cyan;" title="Cyan" onclick="colorSelect('cyan')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: blue;" title="Blue" onclick="colorSelect('blue')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: #7f00ff;" title="Violet" onclick="colorSelect('#7f00ff')" onmouseover="colorHover()"></div
+            ><div class="menuColor" style="background-color: magenta;" title="Magenta" onclick="colorSelect('magenta')" onmouseover="colorHover()"></div>
+          </div>
+        </div>
+        <img src="images/code.png" id="codeButton" class="imgButton" onclick="code()" onmouseover="highlight('codeButton', 'code')" onmouseout="removeHighlight('codeButton', 'code', codeOn)" title="Code (Ctrl + Shift + H)">
+        <img src="images/link.png" id="linkButton" class="imgButton" onclick="link()" onmouseover="highlight('linkButton', 'link')" onmouseout="removeHighlight('linkButton', 'link', linkOn)" title="Link (Ctrl + Shift + K)">
+        <!--div class="popup">
+          <img src="images/emoji.png" id="emojiButton" class="imgButton" onclick="emoji()" onmouseover="highlight('emojiButton', 'emoji')" onmouseout="removeHighlight('emojiButton', 'emoji', emojiOn)" title="Emojis">
+          <div class="popupMenu" id="eMenu" style="width: 120px; height: 32px; margin-left: -74px;">
+            <div class="menuBox" title="Smile" onclick="emojiSelect('🙂')">🙂</div
+            ><div class="menuBox" title="Acute" onclick="emojiSelect('🅱️')">🅱️</div
+            ><div class="menuBox" title="Circumflex" onclick="emojiSelect('🗿')">🗿</div
+            ><div class="menuBox" title="Tilde" onclick="emojiSelect('&#771;')">˜</div
+            ><div class="menuBox" title="Ring" onclick="emojiSelect('&#778;')">˚</div>
+          </div>
+        </div-->
+        <div class="popup">
+          <img src="images/diacritic.png" id="diacriticButton" class="imgButton" onclick="diacritic()" onmouseover="highlight('diacriticButton', 'diacritic')" onmouseout="removeHighlight('diacriticButton', 'diacritic', diacriticOn)" title="Diacritics">
+          <div class="popupMenu hidden" id="dMenu" style="width: 144px; height: 32px; margin-left: -74px;">
+            <div class="menuBox" title="Grave" onclick="diacriticSelect('&#768;')">`</div
+            ><div class="menuBox" title="Acute" onclick="diacriticSelect('&#769;')">´</div
+            ><div class="menuBox" title="Circumflex" onclick="diacriticSelect('&#770;')">ˆ</div
+            ><div class="menuBox" title="Tilde" onclick="diacriticSelect('&#771;')">˜</div
+            ><div class="menuBox" title="Trema" onclick="diacriticSelect('&#776;')">¨</div
+            ><div class="menuBox" title="Ring" onclick="diacriticSelect('&#778;')">˚</div>
+          </div>
         </div>
       </div>
-      <div class='popup'>
-        <img src='color.png' id='colorButton' class='imgButton' onclick='color()' onmouseover='highlight("colorButton", "color")' onmouseout='removeHighlight("colorButton", "color", colorOn)' title='Colors'>
-        <div class='popupMenu' id='cMenu' style='width: 120px; height: 96px; margin-left: -62px;'>
-          <div class='menuColor' style='background-color: white;' title='White' onclick='colorSelect("white")' onmouseover='colorHover(true)'></div
-          ><div class='menuColor' style='background-color: #bfbfbf;' title='Light gray' onclick='colorSelect("#bfbfbf")' onmouseover='colorHover(true)'></div
-          ><div class='menuColor' style='background-color: gray;' title='Gray' onclick='colorSelect("gray")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: #404040;' title='Dark gray' onclick='colorSelect("#404040")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: black;' title='Black' onclick='colorSelect("black")' onmouseover='colorHover()'></div>
-          <br>
-          <div class='menuColor' style='background-color: red;' title='Red' onclick='colorSelect("red")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: #ff7f00;' title='Orange' onclick='colorSelect("#ff7f00")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: #964b00;' title='Brown' onclick='colorSelect("#964b00")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: yellow;' title='Yellow' onclick='colorSelect("yellow")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: lime;' title='Lime' onclick='colorSelect("lime")' onmouseover='colorHover()'></div>
-          <br>
-          <div class='menuColor' style='background-color: green;' title='Green' onclick='colorSelect("green")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: cyan;' title='Cyan' onclick='colorSelect("cyan")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: blue;' title='Blue' onclick='colorSelect("blue")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: #7f00ff;' title='Violet' onclick='colorSelect("#7f00ff")' onmouseover='colorHover()'></div
-          ><div class='menuColor' style='background-color: magenta;' title='Magenta' onclick='colorSelect("magenta")' onmouseover='colorHover()'></div>
-        </div>
+
+      <div id="mediaButtons" class="hidden">
+        <img src="images/image.png" id="imageButton" class="imgButton" onclick="image()" onmouseover="highlight('imageButton', 'image')" onmouseout="removeHighlight('imageButton', 'image', imageOn)" title="Image (Ctrl + M)">
+        <img src="images/video.png" id="videoButton" class="imgButton" onclick="video()" onmouseover="highlight('videoButton', 'video')" onmouseout="removeHighlight('videoButton', 'video', videoOn)" title="Video (Ctrl + Shift + E)">
+        <img src="images/audio.png" id="audioButton" class="imgButton" onclick="audio()" onmouseover="highlight('audioButton', 'audio')" onmouseout="removeHighlight('audioButton', 'audio', audioOn)" title="Audio (Ctrl + Shift + L)">
+        <img src="images/website.png" id="websiteButton" class="imgButton" onclick="website()" onmouseover="highlight('websiteButton', 'website')" onmouseout="removeHighlight('websiteButton', 'website', websiteOn)" title="Website (Ctrl + Shift + F)">
+        <img src="images/youtube.png" id="youtubeButton" class="imgButton" onclick="youtube()" onmouseover="highlight('youtubeButton', 'youtube')" onmouseout="removeHighlight('youtubeButton', 'youtube', youtubeOn)" title="YouTube (Ctrl + Q)">
       </div>
-      <img src='code.png' id='codeButton' class='imgButton' onclick='code()' onmouseover='highlight("codeButton", "code")' onmouseout='removeHighlight("codeButton", "code", codeOn)' title='Code (Ctrl + Shift + H)'>
-      <img src='link.png' id='linkButton' class='imgButton' onclick='link()' onmouseover='highlight("linkButton", "link")' onmouseout='removeHighlight("linkButton", "link", linkOn)' title='Link (Ctrl + Shift + K)'>
-      <!--div class='popup'>
-        <img src='emoji.png' id='emojiButton' class='imgButton' onclick='emoji()' onmouseover='highlight("emojiButton", "emoji")' onmouseout='removeHighlight("emojiButton", "emoji", emojiOn)' title='Emojis'>
-        <div class='popupMenu' id='eMenu' style='width: 120px; height: 32px; margin-left: -74px;'>
-          <div class='menuBox' title='Smile' onclick='emojiSelect("🙂")'>🙂</div
-          ><div class='menuBox' title='Acute' onclick='emojiSelect("🅱️")'>🅱️</div
-          ><div class='menuBox' title='Circumflex' onclick='emojiSelect("🗿")'>🗿</div
-          ><div class='menuBox' title='Tilde' onclick='emojiSelect("&#771;")'>˜</div
-          ><div class='menuBox' title='Ring' onclick='emojiSelect("&#778;")'>˚</div>
-        </div>
-      </div-->
-      <div class='popup'>
-        <img src='diacritic.png' id='diacriticButton' class='imgButton' onclick='diacritic()' onmouseover='highlight("diacriticButton", "diacritic")' onmouseout='removeHighlight("diacriticButton", "diacritic", diacriticOn)' title='Diacritics'>
-        <div class='popupMenu' id='dMenu' style='width: 144px; height: 32px; margin-left: -74px;'>
-          <div class='menuBox' title='Grave' onclick='diacriticSelect("&#768;")'>`</div
-          ><div class='menuBox' title='Acute' onclick='diacriticSelect("&#769;")'>´</div
-          ><div class='menuBox' title='Circumflex' onclick='diacriticSelect("&#770;")'>ˆ</div
-          ><div class='menuBox' title='Tilde' onclick='diacriticSelect("&#771;")'>˜</div
-          ><div class='menuBox' title='Trema' onclick='diacriticSelect("&#776;")'>¨</div
-          ><div class='menuBox' title='Ring' onclick='diacriticSelect("&#778;")'>˚</div>
-        </div>
+
+      <div id="botButtons" class="hidden">
+        <img src="images/russiaBot.png" id="rBotButton" class="imgButton botButton" onclick="rBot()" title="Russia Bot">
+        <img src="images/funnyMemeBot.png" id="fmBotButton" class="imgButton botButton" onclick="fmBot()" title="Funny Meme Bot">
       </div>
-      <img src='image.png' id='imageButton' class='imgButton' onclick='image()' onmouseover='highlight("imageButton", "image")' onmouseout='removeHighlight("imageButton", "image", imageOn)' title='Image (Ctrl + M)'>
-      <img src='video.png' id='videoButton' class='imgButton' onclick='video()' onmouseover='highlight("videoButton", "video")' onmouseout='removeHighlight("videoButton", "video", videoOn)' title='Video (Ctrl + Shift + E)'>
-      <img src='audio.png' id='audioButton' class='imgButton' onclick='audio()' onmouseover='highlight("audioButton", "audio")' onmouseout='removeHighlight("audioButton", "audio", audioOn)' title='Audio (Ctrl + Shift + L)'>
-      <img src='website.png' id='websiteButton' class='imgButton' onclick='website()' onmouseover='highlight("websiteButton", "website")' onmouseout='removeHighlight("websiteButton", "website", websiteOn)' title='Website (Ctrl + Shift + F)'>
-      <img src='youtube.png' id='youtubeButton' class='imgButton' onclick='youtube()' onmouseover='highlight("youtubeButton", "youtube")' onmouseout='removeHighlight("youtubeButton", "youtube", youtubeOn)' title='YouTube (Ctrl + Q)'>
-      <img src='box.png' id='boxButton' class='imgButton' onclick='box()' onmouseover='highlight("boxButton", "box")' onmouseout='removeHighlight("boxButton", "box", false)' title='Box'>
-      <!--img src='hair.png' id='hairButton' class='imgButton' onclick='hair()' onmouseover='highlight("hairButton", "hair")' onmouseout='removeHighlight("hairButton", "hair", false)' title='Hair'-->
-      <!--img src='game.png' id='gameButton' class='imgButton' onclick='game()' onmouseover='highlight("gameButton", "game")' onmouseout='removeHighlight("gameButton", "game", false)' title='Game'-->
-      <img src='russiaBot.png' id='rBotButton' class='imgButton botButton' onclick='rBot()' title='Russia Bot'>
-      <img src='funnyMemeBot.png' id='fmBotButton' class='imgButton botButton' onclick='fmBot()' title='Funny Meme Bot'>
-      <img src='funnyVideoBot.png' id='fvBotButton' class='imgButton botButton' onclick='fvBot()' title='Funny Video Bot'>
-      <img src='light.png' id='lightButton' class='imgButton' style='position: fixed; right: 10px;' onclick='light()' onmouseover='highlight("lightButton", "light")' onmouseout='removeHighlight("lightButton", "light", false)' title='Turn on light mode'>
+
+      <div id="thumbButtons" class="hidden">
+        <img src="images/up.png" id="upButton" class="imgButton" onclick="up()" onmouseover="highlight('upButton', 'up')" onmouseout="removeHighlight('upButton', 'up', false)" title="Thumbs up (Alt + +)">
+        <img src="images/wiggle.png" id="wiggleButton" class="imgButton" onclick="wiggle()" onmouseover="highlight('wiggleButton', 'wiggle')" onmouseout="removeHighlight('wiggleButton', 'wiggle', false)" title="Wiggle (Alt + /)">
+        <img src="images/down.png" id="downButton" class="imgButton" onclick="down()" onmouseover="highlight('downButton', 'down')" onmouseout="removeHighlight('downButton', 'down', false)" title="Thumbs down (Alt + -)">
+      </div>
+
+      <div id="mysteryButtons" class="hidden">
+        <img src="images/box.png" id="boxButton" class="imgButton" onclick="box()" onmouseover="highlight('boxButton', 'box')" onmouseout="removeHighlight('boxButton', 'box', false)" title="Box">
+      </div>
+
+      <!--img src="images/hair.png" id="hairButton" class="imgButton" onclick="hair()" onmouseover="highlight('hairButton', 'hair')" onmouseout="removeHighlight('hairButton', 'hair', false)" title="Hair"-->
+      <!--img src="images/game.png" id="gameButton" class="imgButton" onclick="game()" onmouseover="highlight('gameButton', 'game')" onmouseout="removeHighlight('gameButton', 'game', false)" title="Game"-->
     </div>
   </div>
-  <!--div id='loginBox' class='popupBox'>
-    <img id='loginClose' class='closeButton' src='close.png' onclick='cancelLogin()' onmouseover='highlight("loginClose", "close")' onmouseout='removeHighlight("loginClose", "close", false)'>
-    <div id='nameBox' class='hidden'>
+  <!--div id="loginBox" class="popupBox">
+    <img id="loginClose" src="images/close.png" onclick="cancelLogin()" onmouseover="highlight('loginClose', 'close')" onmouseout="removeHighlight('loginClose', 'close', false)">
+    <div id="nameBox" class="hidden">
       <h1>Create a username</h1><br>
-      @<input class='loginInput' id='usernameInput' style='margin-left: 5px;'></input><br>
+      @<input class="loginInput" id="usernameInput" style="margin-left: 5px;"></input><br>
       <br>
       <br>
       <h1>Real name (optional)</h1><br>
-      <input class='loginInput' id='realNameInput'></input>
+      <input class="loginInput" id="realNameInput"></input>
     </div>
-    <div id='progressBar'>
-      <button class='progressButton' style='right: 0;'>Next</button>
+    <div id="progressBar">
+      <button class="progressButton" style="right: 0;">Next</button>
     </div>
-    <div id='colorBox' class=''>
-      <div style='width: 50%; display: inline-block;'>
+    <div id="colorBox" class="">
+      <div style="width: 50%; display: inline-block;">
         <h1>Choose a color</h1><br>
-        <div class='loginColorButton'>
+        <div class="loginColorButton">
+
         </div><br>
         <br>
         <br>
         <h2>Custom color</h2><br>
-          <input class='loginInput' id='colorInput' placeholder='Name or hex code'></input>
+          <input class="loginInput" id="colorInput" placeholder="Name or hex code"></input>
       </div>
-      <div style='display: inline-block; vertical-align: top; padding-left: 10px; border-left: 1px solid var(--alt-color);'>
+      <div style="display: inline-block; vertical-align: top; padding-left: 10px; border-left: 1px solid var(--alt-color);">
         <h1>Preview</h1>
-        <div class='message'><span class='msgHeading'><img class='avatar' src='avatar.png'><div class='msgText'><b style="color: ;">Username</b></div></span></div>
+        <div class="message"><span class="msgHeading"><img class="avatar" src="images/avatar.png"><div class="msgText"><b style='color: ;'>Username</b></div></span></div>
       </div>
     </div>
-    <div id='progressBar'>
-      <button id='backButton' class='progressButton hidden'>Back</button>
-      <button id='nextButton' class='progressButton'>Next</button>
+    <div id="progressBar">
+      <button id="backButton" class="progressButton hidden">Back</button>
+      <button id="nextButton" class="progressButton">Next</button>
     </div>
   </div-->
-  <div id='bgBlur' class='hidden'></div>
+  <div id="bgBlur" class="hidden" onclick="closePopups()"></div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script type="text/javascript" src='client.js'></script>
-<script type="text/javascript" src='buttons.js'></script>
-<!--Bots>
-<script type="text/javascript" src='russiabot.js'></script>
-<script type="text/javascript" src='funnymemebot.js'></script>
-<script type="text/javascript" src='funnyvideobot.js'></script>
-<script type="text/javascript" src='notabot.js'></script-->
+<script type="text/javascript" src="client.js"></script>
+<script type="text/javascript" src="buttons.js"></script>
+
+<!--Bots-->
+<script type="text/javascript" src="russiabot.js"></script>
+<script type="text/javascript" src="funnymemebot.js"></script>
+<script type="text/javascript" src="notabot.js"></script>
 
 </html>
