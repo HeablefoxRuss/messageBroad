@@ -5,22 +5,28 @@ var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
+
 //http thing
 const http = require('http');
 var fs = require('fs')
 const wsServer = require('websocket').server;
 const sqlite3 = require('sqlite3');
+
 //More thing ypou need
 var db = new sqlite3.Database('login.db');
 const server = http.createServer();
+
 //What port the server is listening to so it knows were to look to get things
 server.listen(8080);
+
 //uses the http to make a server
 const ws = new wsServer({
   httpServer: server
 });
+
 //uses the express thing to look for stuff
 var app = express();
+
 app.use(session({
   secret: 'secret',
   resave: true,
@@ -33,8 +39,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'static')))
+
 app.get('/', function(request, response) {
-  response.sendFile(path.join(__dirname + '/login.html'));
+  response.sendFile(path.join('login.html'));
 });
 
 app.listen(3000);
@@ -61,14 +69,16 @@ app.post('/auth', function(request, response) {
 
 app.get('/home', function(request, response) {
   if (request.session.loggedin) {
-    console.log("IT IS WORKING")
-    fs.readFile('index.html', function(err, data) {
-      response.writeHead(200, {
-        'Content-Type': 'text/html'
-      });
-      response.write(data);
-      return response.end();
-    });
+    response.sendFile('index.html')
+    //OLD CODE
+    // console.log("IT IS WORKING")
+    // fs.readFile(staticDir + 'index.html', function(err, data) {
+    //   response.writeHead(200, {
+    //     'Content-Type': 'text/html'
+    //   });
+    //   response.write(data);
+    //   return response.end();
+    // });
   } else {
     response.send('Please login to view this page!');
   }
